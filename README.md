@@ -1,7 +1,7 @@
 ### About
 Sample project written on Laravel 8 with sample event handling and automated tests. Please see `tests` directory to check how the app works.
 
-### Pre-requisites
+### Prerequisites
 - Docker
 
 ### Steps to run
