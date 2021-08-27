@@ -1,0 +1,68 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: angelo
+        uid: 1000
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    image: laravel-8-sample
+    container_name: app
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - laravel-8-sample
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    ports: ["3326:3306"]
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: pwd
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - db-volume:/var/lib/mysql
+    networks:
+      - laravel-8-sample
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - 8001:80
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d/
+    networks:
+      - laravel-8-sample
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    networks:
+      - laravel-8-sample
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: ${DB_USERNAME}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - db
+    ports:
+      - 8081:80
+    volumes:
+      - /sessions
+
+volumes:
+  db-volume: {}
+
+networks:
+  laravel-8-sample:
+    driver: bridge
+    name: laravel-8-sample
