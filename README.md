@@ -1,14 +1,18 @@
 ### About
-Sample project written on Laravel 8 with sample event handling and automated tests. Please see `tests` directory to check how the app works.
+Sample project written on Laravel 8 with sample event handling, automated tests and API returns. Please see `tests` directory to check how the app works.
 
 ### Prerequisites
 - Docker
+- If Docker is not available, the application will run on:
+ - Nginx
+ - PHP 8.0
+ - MySql 5.7
 
 ### Steps to run
 
 1. Copy the contents of `.env.example` and `.env.testing.example` to create your `.env` and `.env.testing` config files.
 
-2. Run `docker-compose up -d` to build the images.
+2. Run `docker-compose up -d` to build the containers.
 
 3. Please visit http://localhost:8001 to access the application and http://localhost:8081 to access PHPMyAdmin
 
