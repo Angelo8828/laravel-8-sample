@@ -4,9 +4,9 @@ Sample project written on Laravel 8 with sample event handling, automated tests 
 ### Prerequisites
 * Docker
 * If Docker is not available, the application will run on:
- * Nginx
- * PHP 8.0
- * MySql 5.7
+    * Nginx
+    * PHP 8.0
+    * MySql 5.7
 
 ### Steps to run
 
