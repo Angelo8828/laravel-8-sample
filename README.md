@@ -2,6 +2,7 @@
 Test project written on Laravel 8 with sample event handling, automated tests and API returns. Please see `tests` directory to check how the app works.
 
 ### Prerequisites
+* NPM
 * Docker
 * If Docker is not available, the application will run on:
     * Nginx
@@ -14,13 +15,15 @@ Test project written on Laravel 8 with sample event handling, automated tests an
 
 2. Run `docker-compose up -d` to build the containers.
 
-3. Please visit http://localhost:8001 to access the application and http://localhost:8081 to access PHPMyAdmin
+3. Run `docker exec -it app composer install` to install Composer packages. Please also run `npm install` to install NPM packages and dependencies.
 
-4. Please run migrations and database seeders using commands `docker exec -it app php artisan migrate` and `docker exec -it app php artisan db:seed`.
+4. Please visit http://localhost:8001 to access the application and http://localhost:8081 to access PHPMyAdmin
 
-5. Create `test_phpunit` database (can be easily done on PHPMyAdmin) to perform tests
+5. Please run migrations and database seeders using commands `docker exec -it app php artisan migrate` and `docker exec -it app php artisan db:seed`.
 
-6. Run `docker exec -it app php artisan test
+6. Create `test_phpunit` database (can be easily done on PHPMyAdmin) to perform tests
+
+7. Run `docker exec -it app php artisan test
 ` to perform initial tests and see if the app runs as expected.
 
 Notes: Generate new app key by running `docker exec -it app php artisan key:generate` if needed after running all these steps.
